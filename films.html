@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Films</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="films.css">
+</head>
+
+<body>
+
+    <header id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">ODEON</a>
+            <!-- <h1 class="logo">ODEON</h1> -->
+
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a class="films-home" href="films.html">Films</a></li>
+                    <li><a class="films" href="#">Cinemas</a></li>
+                    <li><a class="films" href="#">Experience</a></li>
+                    <li><a class="films" href="#">Membership</a></li>
+                    <li><a class="films" href="#">Offers &amp; Gifts</a></li>
+                    <li><a class="films" href="#">Family</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <a class="sign-link" href="#">Sign in</a>
+                <a class="sign-link" href="#">Sign up</a>
+                <button class="icon-btn" id="darkToggle" title="Toggle dark mode">
+                    <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="icon-btn tickets-btn" id="myTicketsBtn" title="My Tickets">
+                    <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                        </path>
+                        <path d="M13 5v2"></path>
+                        <path d="M13 17v2"></path>
+                        <path d="M13 11v2"></path>
+                    </svg>
+                    <span class="ticket-badge hidden" id="ticketCount">0</span>
+                </button>
+                <div class="location-wrapper">
+                    <button class="icon-btn">
+                        <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                            </path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </button>
+
+                </div>
+                <button class="icon-btn" id="searchToggle">
+                    <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m21 21-4.34-4.34"></path>
+                        <circle cx="11" cy="11" r="8"></circle>
+                    </svg>
+                </button>
+            </div>
+            <div class="mobile-icons">
+                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+                <div class="nav-dropdown" id="navDropdown">
+                    <ul>
+                        <li><a href="#">Films</a></li>
+                        <li><a href="#">Cinemas</a></li>
+                        <li><a href="#">Experience</a></li>
+                        <li><a href="#">Membership</a></li>
+                        <li><a href="#">Offers &amp; Gifts</a></li>
+                        <li><a href="#">Family</a></li>
+                    </ul>
+                </div>
+                <div class="profile-wrapper">
+                    <button class="icon-btn profile-btn" id="profileBtn">
+                        <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="8" r="4"></circle>
+                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
+                        </svg>
+                    </button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="#">Sign in</a>
+                        <a href="#">Sign up</a>
+                    </div>
+                </div>
+                <div class="location-wrapper">
+                    <button class="icon-btn">
+                        <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                            </path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </button>
+                    <div class="location-tooltip">Select your favorite cinemas</div>
+                </div>
+                <button class="icon-btn" id="searchToggleMobile">
+                    <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m21 21-4.34-4.34"></path>
+                        <circle cx="11" cy="11" r="8"></circle>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-input-wrap">
+                <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m21 21-4.34-4.34"></path>
+                    <circle cx="11" cy="11" r="8"></circle>
+                </svg>
+                <input autocomplete="off" id="searchInput" placeholder="Type here to search" type="text" />
+            </div>
+            <button class="search-cancel-btn" id="searchCancel">Cancel</button>
+        </div>
+    </header>
+
+    <!-- SLIDER -->
+    <div class="slider-wrapper">
+
+        <!-- SLIDES — add as many as you want -->
+        <div class="slides">
+
+            <div class="slide" style="background-image: url('./posters/supermario-slide.avif');">
+                <div class="slide-overlay"></div>
+                <div class="slide-text">
+                    <h2>POWER-UP YOUR<br>ADVENTURE</h2>
+                    <button class="btn-tic">Experience The Super Mario Galaxy Movie</button>
+                </div>
+            </div>
+
+            <div class="slide" style="background-image: url('./posters/dark\ knights\ slide.webp');">
+                <div class="slide-overlay"></div>
+                <div class="slide-text">
+                    <h2>GOTHAM'S DARK<br>KNIGHT RETURNS</h2>
+                    <button class="btn-tic">Book The Batman Now</button>
+                </div>
+            </div>
+
+            <div class="slide" style="background-image: url('./posters/dune-part-3\ slide.jpg');">
+                <div class="slide-overlay"></div>
+                <div class="slide-text">
+                    <h2>THE DESTINY<br>OF ARRAKIS</h2>
+                    <button class="btn-tic">Book Dune: Part Three</button>
+                </div>
+            </div>
+
+            <div class="slide" style="background-image: url('./posters/Nosferatu.slide-jpg.jpg');">
+                <div class="slide-overlay"></div>
+                <div class="slide-text">
+                    <h2>DARKNESS<br>RISES</h2>
+                    <button class="btn-tic">Book Nosferatu Now</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- PREV / NEXT ARROWS -->
+        <button class="slider-arrow prev" id="prevBtn">&#10094;</button>
+        <button class="slider-arrow next" id="nextBtn">&#10095;</button>
+
+        <!-- DOTS -->
+        <div class="slider-dots" id="sliderDots"></div>
+
+    </div>
+
+    <script src="films.js"></script>
+</body>
+
+</html>
