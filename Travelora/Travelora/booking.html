@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Your Trip | Travelora</title>
+  <meta name="description" content="Book your dream trip with Travelora. Fill in your details, choose your destination, and get an instant price quote." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>✈️</text></svg>">
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══════════════════════════════════════════════ -->
+  <nav class="travelora-nav scrolled" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">✈ Travelora</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="booking.html" class="active">Book a Trip</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions" id="navActions">
+        <span id="navGuest">
+          <a href="login.html" class="nav-login-btn">Login</a>
+          <a href="signup.html" class="nav-cta-btn">Get Started</a>
+        </span>
+        <div class="nav-user-dropdown d-none" id="navUser">
+          <button class="nav-user-btn" id="navUserBtn">
+            <div class="nav-avatar" id="navAvatarInitial"></div>
+            <span id="navUserName"></span>
+            <span>▾</span>
+          </button>
+          <div class="dropdown-menu-custom">
+            <a href="dashboard.html">🧭 Dashboard</a>
+            <a href="mybookings.html">📋 My Bookings</a>
+            <a href="profile.html">👤 Profile</a>
+            <div class="divider"></div>
+            <button class="logout-btn" id="logoutBtn">🚪 Logout</button>
+          </div>
+        </div>
+      </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══ BOOKING SECTION ════════════════════════════════════ -->
+  <section class="booking-section">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 0 24px;">
+
+      <!-- Page Header -->
+      <div class="reveal" style="margin-bottom: 40px;">
+        <a href="index.html" style="color: var(--white-70); font-size: 0.875rem; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 16px; transition: color 0.2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--white-70)'">← Back to Home</a>
+        <div class="badge-pill">✈ Booking</div>
+        <h1 class="section-title" style="margin-bottom: 8px;">Book Your Dream Trip</h1>
+        <p style="color: var(--white-70); font-size: 1rem;">Fill in your details below and we'll take care of the rest.</p>
+      </div>
+
+      <!-- Two-column grid -->
+      <div class="booking-grid">
+
+        <!-- LEFT: FORM -->
+        <div class="booking-form-card reveal">
+
+          <!-- Section: Personal Info -->
+          <div class="form-section-title">👤 Personal Information</div>
+          <form id="bookingForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="fullName">Full Name</label>
+                <input class="form-control" type="text" id="fullName" name="fullName" placeholder="John Doe" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input class="form-control" type="email" id="email" name="email" placeholder="john@email.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number</label>
+              <input class="form-control" type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required />
+            </div>
+
+            <!-- Section: Trip Details -->
+            <div class="form-section-title" style="margin-top: 32px;">🌍 Trip Details</div>
+            <div class="form-group">
+              <label class="form-label" for="destination">Destination</label>
+              <select class="form-control" id="destination" name="destination" required>
+                <option value="" disabled selected>Select your destination</option>
+                <option value="Paris, France" data-price="120" data-img="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80">🇫🇷 Paris, France — $120/day</option>
+                <option value="Tokyo, Japan" data-price="150" data-img="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80">🇯🇵 Tokyo, Japan — $150/day</option>
+                <option value="New York, USA" data-price="100" data-img="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&q=80">🇺🇸 New York, USA — $100/day</option>
+                <option value="Dubai, UAE" data-price="180" data-img="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80">🇦🇪 Dubai, UAE — $180/day</option>
+                <option value="Cape Town, South Africa" data-price="90" data-img="https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600&q=80">🇿🇦 Cape Town, South Africa — $90/day</option>
+                <option value="London, UK" data-price="130" data-img="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80">🇬🇧 London, UK — $130/day</option>
+                <option value="Sydney, Australia" data-price="160" data-img="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&q=80">🇦🇺 Sydney, Australia — $160/day</option>
+                <option value="Rome, Italy" data-price="110" data-img="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=80">🇮🇹 Rome, Italy — $110/day</option>
+                <option value="Bali, Indonesia" data-price="140" data-img="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80">🇮🇩 Bali, Indonesia — $140/day</option>
+                <option value="Toronto, Canada" data-price="120" data-img="https://images.unsplash.com/photo-1517090186835-e348b621c9ca?w=600&q=80">🇨🇦 Toronto, Canada — $120/day</option>
+              </select>
+              <input type="hidden" id="basePrice" value="" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="startDate">Departure Date</label>
+                <input class="form-control" type="date" id="startDate" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="endDate">Return Date</label>
+                <input class="form-control" type="date" id="endDate" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="travelers">Number of Travelers</label>
+              <select class="form-control" id="travelers">
+                <option value="1">1 Traveler</option>
+                <option value="2">2 Travelers</option>
+                <option value="3">3 Travelers</option>
+                <option value="4">4 Travelers</option>
+                <option value="5">5 Travelers</option>
+                <option value="6">6+ Travelers</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="travelClass">Travel Class</label>
+              <select class="form-control" id="travelClass">
+                <option value="economy">Economy</option>
+                <option value="business">Business Class (+40%)</option>
+                <option value="first">First Class (+80%)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="notes">Special Requests (Optional)</label>
+              <textarea class="form-control" id="notes" rows="3" placeholder="Any special requirements, dietary needs, accessibility requests..."></textarea>
+            </div>
+
+            <!-- Cost Display -->
+            <div class="cost-display">
+              <div class="cost-label">Estimated Total Cost</div>
+              <div class="cost-amount" id="totalCost">$0.00</div>
+              <div style="font-size: 0.78rem; color: var(--white-70); margin-top: 6px;" id="costBreakdown">Select a destination and dates to see pricing</div>
+            </div>
+
+            <!-- Terms -->
+            <label class="checkbox-group" style="margin-bottom: 24px;">
+              <input type="checkbox" id="agreeTerms" required />
+              I agree to Travelora's <a href="#" class="auth-link">Terms of Service</a> and <a href="#" class="auth-link">Privacy Policy</a>
+            </label>
+
+            <button type="submit" class="btn-primary-custom" style="width: 100%; justify-content: center; padding: 16px; font-size: 1rem; border-radius: 12px;">
+              ✈ Confirm Booking
+            </button>
+          </form>
+        </div>
+
+        <!-- RIGHT: SUMMARY PANEL -->
+        <div class="reveal">
+          <div class="booking-summary-card">
+            <h3 style="font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; margin-bottom: 20px;">📋 Trip Summary</h3>
+
+            <img class="summary-dest-img" id="summaryImg"
+              src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80"
+              alt="Destination" />
+
+            <div class="summary-line">
+              <span class="label">Destination</span>
+              <span class="value" id="summaryDest">—</span>
+            </div>
+            <div class="summary-line">
+              <span class="label">Departure</span>
+              <span class="value" id="summarySt">—</span>
+            </div>
+            <div class="summary-line">
+              <span class="label">Return</span>
+              <span class="value" id="summaryEd">—</span>
+            </div>
+            <div class="summary-line">
+              <span class="label">Duration</span>
+              <span class="value" id="summaryDays">—</span>
+            </div>
+            <div class="summary-line">
+              <span class="label">Travelers</span>
+              <span class="value" id="summaryTravelers">1</span>
+            </div>
+            <div class="summary-line">
+              <span class="label">Class</span>
+              <span class="value" id="summaryClass">Economy</span>
+            </div>
+            <div class="summary-line">
+              <span class="label">Base Rate</span>
+              <span class="value" id="summaryRate">—</span>
+            </div>
+            <div class="summary-line">
+              <span class="label" style="font-weight: 700; color: var(--white);">Total</span>
+              <span class="summary-total" id="summaryTotal">$0.00</span>
+            </div>
+
+            <div style="margin-top: 20px; padding: 16px; background: rgba(14,207,207,0.06); border: 1px solid rgba(14,207,207,0.15); border-radius: 10px;">
+              <p style="font-size: 0.8rem; color: var(--white-70); line-height: 1.6; margin: 0;">
+                💡 <strong>Free cancellation</strong> up to 48 hours before departure. Price includes all taxes and fees.
+              </p>
+            </div>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="booking-summary-card" style="margin-top: 20px;">
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div style="display: flex; align-items: center; gap: 12px; font-size: 0.875rem; color: var(--white-70);">
+                <span style="font-size: 1.3rem;">🔒</span> Secure SSL Encrypted Booking
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; font-size: 0.875rem; color: var(--white-70);">
+                <span style="font-size: 1.3rem;">🏆</span> Best Price Guarantee
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; font-size: 0.875rem; color: var(--white-70);">
+                <span style="font-size: 1.3rem;">🎧</span> 24/7 Customer Support
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; font-size: 0.875rem; color: var(--white-70);">
+                <span style="font-size: 1.3rem;">📄</span> Instant PDF Receipt
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/travel.js"></script>
+</body>
+</html>

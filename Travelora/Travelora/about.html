@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Travelora</title>
+  <meta name="description" content="Learn about Travelora's mission to make world-class travel accessible to everyone. Meet our team and discover our story." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>✈️</text></svg>">
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══════════════════════════════════════════════ -->
+  <nav class="travelora-nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">✈ Travelora</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="booking.html">Book a Trip</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions" id="navActions">
+        <span id="navGuest">
+          <a href="login.html" class="nav-login-btn">Login</a>
+          <a href="signup.html" class="nav-cta-btn">Get Started</a>
+        </span>
+        <div class="nav-user-dropdown d-none" id="navUser">
+          <button class="nav-user-btn" id="navUserBtn">
+            <div class="nav-avatar" id="navAvatarInitial"></div>
+            <span id="navUserName"></span>
+            <span>▾</span>
+          </button>
+          <div class="dropdown-menu-custom">
+            <a href="dashboard.html">🧭 Dashboard</a>
+            <a href="mybookings.html">📋 My Bookings</a>
+            <a href="profile.html">👤 Profile</a>
+            <div class="divider"></div>
+            <button class="logout-btn" id="logoutBtn">🚪 Logout</button>
+          </div>
+        </div>
+      </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ════════════════════════════════════════════════ -->
+  <section style="padding: 160px 0 80px; text-align: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(14,207,207,0.1) 0%, transparent 60%); z-index: 0;"></div>
+    <div style="position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 24px;">
+      <div class="badge-pill">✈ Our Story</div>
+      <h1 class="section-title">We Live to Help You Travel</h1>
+      <p class="section-subtitle" style="margin-bottom: 0;">Travelora was born from a simple belief — that extraordinary travel experiences should be available to everyone, not just the privileged few.</p>
+    </div>
+  </section>
+
+  <!-- ══ MISSION ══════════════════════════════════════════════ -->
+  <section class="section-py" style="padding-top: 0;">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;" class="reveal">
+        <div>
+          <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=700&q=80"
+               alt="Travel planning"
+               style="width: 100%; height: 400px; object-fit: cover; border-radius: var(--radius-xl); border: 1px solid var(--border);" />
+        </div>
+        <div>
+          <div class="badge-pill">🎯 Our Mission</div>
+          <h2 class="section-title" style="font-size: 2.2rem;">Making the World Smaller, Richer</h2>
+          <p style="color: var(--white-70); line-height: 1.8; margin-bottom: 20px; font-size: 0.975rem;">
+            Founded in 2012, Travelora has grown from a small startup to one of the world's most trusted travel booking platforms, serving over 500,000 happy travelers across 200+ destinations.
+          </p>
+          <p style="color: var(--white-70); line-height: 1.8; font-size: 0.975rem;">
+            Our mission is simple: remove the friction from travel planning so you can focus on what really matters — the experiences, the culture, and the memories.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px;">
+            <div style="text-align: center; padding: 20px; background: var(--navy-card); border: 1px solid var(--border); border-radius: var(--radius-lg);">
+              <div style="font-family: var(--font-head); font-size: 2rem; font-weight: 800; color: var(--teal);">200+</div>
+              <div style="font-size: 0.82rem; color: var(--white-70); margin-top: 4px;">Destinations</div>
+            </div>
+            <div style="text-align: center; padding: 20px; background: var(--navy-card); border: 1px solid var(--border); border-radius: var(--radius-lg);">
+              <div style="font-family: var(--font-head); font-size: 2rem; font-weight: 800; color: var(--gold);">500K+</div>
+              <div style="font-size: 0.82rem; color: var(--white-70); margin-top: 4px;">Travelers</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VALUES ═══════════════════════════════════════════════ -->
+  <section class="section-py" style="background: rgba(255,255,255,0.02); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px;">
+      <div class="text-center reveal" style="margin-bottom: 48px;">
+        <div class="badge-pill">💎 Our Values</div>
+        <h2 class="section-title">What Drives Us</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px;">
+        <div class="feature-card reveal">
+          <div class="feature-icon">🤝</div>
+          <h3 class="feature-title">Trust & Transparency</h3>
+          <p class="feature-text">No hidden fees. No surprises. The price you see is the price you pay — always.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🌱</div>
+          <h3 class="feature-title">Sustainable Travel</h3>
+          <p class="feature-text">We partner with eco-conscious operators and offset carbon for every booking made.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">💡</div>
+          <h3 class="feature-title">Innovation</h3>
+          <p class="feature-text">We continuously push the boundaries of what a travel platform can be for our users.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">❤️</div>
+          <h3 class="feature-title">Customer First</h3>
+          <p class="feature-text">Every decision we make starts with one question: what's best for our travelers?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TEAM ══════════════════════════════════════════════════ -->
+  <section class="section-py">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px;">
+      <div class="text-center reveal" style="margin-bottom: 48px;">
+        <div class="badge-pill">👥 The Team</div>
+        <h2 class="section-title">Meet Our People</h2>
+        <p class="section-subtitle">A passionate team of travel lovers, engineers, and dreamers building the future of travel.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px;">
+        <div class="testimonial-card reveal" style="text-align: center;">
+          <div class="testimonial-avatar" style="margin: 0 auto 16px; width: 70px; height: 70px; font-size: 1.5rem;">JA</div>
+          <div class="testimonial-name" style="font-size: 1rem;">James Adeyemi</div>
+          <div class="testimonial-location" style="color: var(--teal); font-weight: 600; margin-bottom: 10px;">CEO & Co-Founder</div>
+          <p class="testimonial-text" style="font-size: 0.82rem; margin: 0;">"I wanted to build the platform I wished had existed when I first started backpacking."</p>
+        </div>
+        <div class="testimonial-card reveal" style="text-align: center;">
+          <div class="testimonial-avatar" style="margin: 0 auto 16px; width: 70px; height: 70px; font-size: 1.5rem; background: linear-gradient(135deg, var(--gold), #e88a0a);">SC</div>
+          <div class="testimonial-name" style="font-size: 1rem;">Sophie Chen</div>
+          <div class="testimonial-location" style="color: var(--teal); font-weight: 600; margin-bottom: 10px;">Head of Design</div>
+          <p class="testimonial-text" style="font-size: 0.82rem; margin: 0;">"Beautiful design isn't just aesthetic — it's how we reduce stress and bring joy to travel."</p>
+        </div>
+        <div class="testimonial-card reveal" style="text-align: center;">
+          <div class="testimonial-avatar" style="margin: 0 auto 16px; width: 70px; height: 70px; font-size: 1.5rem; background: linear-gradient(135deg, #7c3aed, #4f46e5);">MO</div>
+          <div class="testimonial-name" style="font-size: 1rem;">Michael Okafor</div>
+          <div class="testimonial-location" style="color: var(--teal); font-weight: 600; margin-bottom: 10px;">CTO</div>
+          <p class="testimonial-text" style="font-size: 0.82rem; margin: 0;">"Technology should be invisible. The only thing our users should notice is how easy booking feels."</p>
+        </div>
+        <div class="testimonial-card reveal" style="text-align: center;">
+          <div class="testimonial-avatar" style="margin: 0 auto 16px; width: 70px; height: 70px; font-size: 1.5rem; background: linear-gradient(135deg, #0ea5e9, #0284c7);">AL</div>
+          <div class="testimonial-name" style="font-size: 1rem;">Amara Levi</div>
+          <div class="testimonial-location" style="color: var(--teal); font-weight: 600; margin-bottom: 10px;">Head of Support</div>
+          <p class="testimonial-text" style="font-size: 0.82rem; margin: 0;">"Every traveler deserves to feel supported at every step of their journey."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ══════════════════════════════════════════════════ -->
+  <section class="newsletter-section">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px;">
+      <div class="newsletter-card reveal" style="text-align: center;">
+        <div class="badge-pill" style="margin-bottom: 20px; display: inline-flex;">Join Us</div>
+        <h2 class="section-title">Ready to Explore?</h2>
+        <p style="color: var(--white-70); max-width: 480px; margin: 0 auto 32px; line-height: 1.7;">
+          Join over 500,000 adventurers who trust Travelora to make their travel dreams a reality.
+        </p>
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <a href="signup.html" class="btn-primary-custom">🚀 Get Started Free</a>
+          <a href="destinations.html" class="btn-secondary-custom">🌍 Browse Destinations</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">✈ Travelora</div>
+          <p class="footer-brand-desc">Your premium travel booking partner. Explore extraordinary destinations with ease, confidence, and style.</p>
+        </div>
+        <div>
+          <p class="footer-heading">Company</p>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Travel</p>
+          <ul class="footer-links">
+            <li><a href="destinations.html">Destinations</a></li>
+            <li><a href="booking.html">Book a Trip</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Legal</p>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Travelora. All Rights Reserved.</span>
+        <span>Made with ❤️ for adventurers worldwide</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/travel.js"></script>
+</body>
+</html>

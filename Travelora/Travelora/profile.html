@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile | Travelora</title>
+  <meta name="description" content="Manage your Travelora profile, update your personal details, and view your account information." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>✈️</text></svg>">
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══════════════════════════════════════════════ -->
+  <nav class="travelora-nav scrolled" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">✈ Travelora</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="booking.html">Book a Trip</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="nav-actions" id="navActions">
+        <span id="navGuest">
+          <a href="login.html" class="nav-login-btn">Login</a>
+        </span>
+        <div class="nav-user-dropdown d-none" id="navUser">
+          <button class="nav-user-btn" id="navUserBtn">
+            <div class="nav-avatar" id="navAvatarInitial"></div>
+            <span id="navUserName"></span>
+            <span>▾</span>
+          </button>
+          <div class="dropdown-menu-custom">
+            <a href="dashboard.html">🧭 Dashboard</a>
+            <a href="mybookings.html">📋 My Bookings</a>
+            <a href="profile.html">👤 Profile</a>
+            <div class="divider"></div>
+            <button class="logout-btn" id="logoutBtn">🚪 Logout</button>
+          </div>
+        </div>
+      </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══ PROFILE SECTION ════════════════════════════════════ -->
+  <section class="profile-page">
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 24px;">
+
+      <!-- Avatar & Name -->
+      <div class="reveal" style="text-align: center; margin-bottom: 48px;">
+        <div class="profile-avatar-ring" id="profileAvatar">?</div>
+        <h1 class="section-title" style="font-size: 1.8rem; margin-bottom: 6px;" id="profileDisplayName">Your Name</h1>
+        <p style="color: var(--white-70);" id="profileDisplayEmail">your@email.com</p>
+        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(14,207,207,0.1); border: 1px solid rgba(14,207,207,0.2); border-radius: 100px; padding: 5px 14px; font-size: 0.8rem; color: var(--teal); margin-top: 12px;">
+          ✅ Verified Account
+        </div>
+      </div>
+
+      <!-- Account Info Card -->
+      <div class="booking-form-card reveal" style="margin-bottom: 24px;">
+        <div class="form-section-title">📋 Account Details</div>
+        <div class="summary-line" style="padding: 14px 0;">
+          <span class="label" style="color: var(--white-70);">Full Name</span>
+          <span class="value" id="profileName">—</span>
+        </div>
+        <div class="summary-line" style="padding: 14px 0;">
+          <span class="label" style="color: var(--white-70);">Email Address</span>
+          <span class="value" id="profileEmail">—</span>
+        </div>
+        <div class="summary-line" style="padding: 14px 0; border-bottom: none;">
+          <span class="label" style="color: var(--white-70);">Member Since</span>
+          <span class="value" id="profileJoined">—</span>
+        </div>
+      </div>
+
+      <!-- Edit Profile Form -->
+      <div class="booking-form-card reveal" style="margin-bottom: 24px;">
+        <div class="form-section-title">✏️ Update Profile</div>
+        <div id="profileUpdateSuccess" style="background: rgba(14,207,207,0.1); border: 1px solid rgba(14,207,207,0.25); border-radius: 10px; padding: 12px 16px; font-size: 0.875rem; color: var(--teal); margin-bottom: 20px; display: none;">
+          ✅ Profile updated successfully!
+        </div>
+        <form id="profileForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="editName">Full Name</label>
+            <input class="form-control" type="text" id="editName" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editEmail">Email Address</label>
+            <input class="form-control" type="email" id="editEmail" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editPhone">Phone Number (Optional)</label>
+            <input class="form-control" type="tel" id="editPhone" placeholder="+1 234 567 8900" />
+          </div>
+          <button type="submit" class="btn-primary-custom" style="width: 100%; justify-content: center; padding: 14px; border-radius: 12px;">
+            💾 Save Changes
+          </button>
+        </form>
+      </div>
+
+      <!-- Change Password -->
+      <div class="booking-form-card reveal" style="margin-bottom: 24px;">
+        <div class="form-section-title">🔒 Change Password</div>
+        <form id="passwordForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="currentPwd">Current Password</label>
+            <input class="form-control" type="password" id="currentPwd" placeholder="••••••••" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="newPwd">New Password</label>
+            <input class="form-control" type="password" id="newPwd" placeholder="Min. 8 characters" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="confirmPwd">Confirm New Password</label>
+            <input class="form-control" type="password" id="confirmPwd" placeholder="Re-enter new password" />
+          </div>
+          <div id="pwdError" style="color: #ff6b6b; font-size: 0.85rem; margin-bottom: 14px; display: none;"></div>
+          <button type="submit" class="btn-secondary-custom" style="width: 100%; justify-content: center; padding: 13px; border-radius: 12px;">
+            🔒 Update Password
+          </button>
+        </form>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="booking-form-card reveal" style="border-color: rgba(255,107,107,0.2);">
+        <div class="form-section-title" style="color: #ff6b6b; border-color: rgba(255,107,107,0.2);">⚠️ Danger Zone</div>
+        <p style="color: var(--white-70); font-size: 0.875rem; margin-bottom: 20px;">
+          Logging out will end your current session. All your bookings are safely stored and will be available when you log back in.
+        </p>
+        <button class="btn-secondary-custom" id="profileLogoutBtn" style="border-color: rgba(255,107,107,0.4); color: #ff6b6b;">
+          🚪 Logout
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <span>© 2025 Travelora. All Rights Reserved.</span>
+        <a href="dashboard.html" style="color: var(--teal);">← Dashboard</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/travel.js"></script>
+</body>
+</html>

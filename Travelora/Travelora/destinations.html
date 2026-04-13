@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Destinations | Travelora</title>
+  <meta name="description" content="Explore 200+ breathtaking travel destinations worldwide. Filter by continent and find your perfect escape with Travelora." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>✈️</text></svg>">
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══════════════════════════════════════════════ -->
+  <nav class="travelora-nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">✈ Travelora</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html" class="active">Destinations</a></li>
+        <li><a href="booking.html">Book a Trip</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions" id="navActions">
+        <span id="navGuest">
+          <a href="login.html" class="nav-login-btn">Login</a>
+          <a href="signup.html" class="nav-cta-btn">Get Started</a>
+        </span>
+        <div class="nav-user-dropdown d-none" id="navUser">
+          <button class="nav-user-btn" id="navUserBtn">
+            <div class="nav-avatar" id="navAvatarInitial"></div>
+            <span id="navUserName"></span>
+            <span>▾</span>
+          </button>
+          <div class="dropdown-menu-custom">
+            <a href="dashboard.html">🧭 Dashboard</a>
+            <a href="mybookings.html">📋 My Bookings</a>
+            <a href="profile.html">👤 Profile</a>
+            <div class="divider"></div>
+            <button class="logout-btn" id="logoutBtn">🚪 Logout</button>
+          </div>
+        </div>
+      </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══ PAGE HERO ════════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="badge-pill">🌍 Explore</div>
+      <h1 class="section-title">World-Class Destinations</h1>
+      <p class="section-subtitle">From sun-drenched beaches to ancient cities — find your next adventure below.</p>
+    </div>
+  </section>
+
+  <!-- ══ DESTINATIONS GRID ════════════════════════════════════ -->
+  <section class="section-sm" style="padding-top: 0;">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 0 24px;">
+      <!-- Filter Tabs -->
+      <div class="filter-tabs reveal" id="destFilterTabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="europe">🌍 Europe</button>
+        <button class="filter-tab" data-filter="asia">🌏 Asia</button>
+        <button class="filter-tab" data-filter="americas">🌎 Americas</button>
+        <button class="filter-tab" data-filter="oceania">🏝️ Oceania</button>
+        <button class="filter-tab" data-filter="africa">🦁 Africa</button>
+        <button class="filter-tab" data-filter="middleeast">🕌 Middle East</button>
+      </div>
+
+      <!-- Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px;" id="allDestGrid">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">✈ Travelora</div>
+          <p class="footer-brand-desc">Your premium travel booking partner. Explore extraordinary destinations with ease, confidence, and style.</p>
+        </div>
+        <div>
+          <p class="footer-heading">Company</p>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Travel</p>
+          <ul class="footer-links">
+            <li><a href="destinations.html">Destinations</a></li>
+            <li><a href="booking.html">Book a Trip</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Support</p>
+          <ul class="footer-links">
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Travelora. All Rights Reserved.</span>
+        <span>Made with ❤️ for adventurers worldwide</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/travel.js"></script>
+</body>
+</html>
