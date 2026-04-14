@@ -211,31 +211,39 @@ const BOOKING_PAGES = [
 ];
 
 // =====================
+//  HELPERS
+// =====================
+function $(id) {
+  return document.getElementById(id);
+}
+function on(id, event, fn) {
+  const el = $(id);
+  if (el) el.addEventListener(event, fn);
+}
+
+// =====================
 //  SEAT MAP GENERATOR
 // =====================
 function generateSeatMap(showtimeId) {
   const saved = getSavedSeatMap(showtimeId);
   if (saved) return saved;
-
   const rows = ["A", "B", "C", "D", "E", "F", "G", "H"];
-  const map = rows.map((row, rIdx) => {
+  return rows.map((row, rIdx) => {
     const seats = [];
     for (let c = 1; c <= 10; c++) {
       const isVip = rIdx >= 4 && rIdx <= 5;
       const isCouple = rIdx >= 6 && (c === 9 || c === 10);
       if (isCouple && c === 10) continue;
-      const preBooked = Math.random() < 0.2;
       seats.push({
         id: `${row}${c}`,
         row,
         col: c,
         type: isCouple ? "couple" : isVip ? "vip" : "regular",
-        status: preBooked ? "booked" : "available",
+        status: Math.random() < 0.2 ? "booked" : "available",
       });
     }
     return { row, seats };
   });
-  return map;
 }
 
 function getSavedSeatMap(showtimeId) {
@@ -250,7 +258,7 @@ function saveSeatMap(showtimeId, map) {
 }
 
 // =====================
-//  BOOKINGS (localStorage)
+//  BOOKINGS
 // =====================
 function getBookings() {
   return JSON.parse(localStorage.getItem("bookings") || "[]");
@@ -262,21 +270,15 @@ function saveBooking(booking) {
 }
 
 // =====================
-//  NAVIGATION
+//  NAVIGATION (index.html only)
 // =====================
 function showPage(id) {
   document
     .querySelectorAll(".page")
     .forEach((p) => p.classList.remove("active"));
-  const page = document.getElementById(id);
+  const page = $(id);
   if (page) page.classList.add("active");
-
-  if (BOOKING_PAGES.includes(id)) {
-    document.body.classList.add("booking-mode");
-  } else {
-    document.body.classList.remove("booking-mode");
-  }
-
+  document.body.classList.toggle("booking-mode", BOOKING_PAGES.includes(id));
   localStorage.setItem("currentPage", id);
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -288,31 +290,17 @@ function posterHTML(m, height) {
   height = height || 320;
   if (m.poster) {
     return (
-      '<img class="movie-poster" src="' +
-      m.poster +
-      '" alt="' +
-      m.title +
-      ' poster" style="height:' +
-      height +
-      "px\" onerror=\"this.style.display='none';this.nextElementSibling.style.display='flex'\" />" +
-      '<div class="movie-poster-placeholder" style="height:' +
-      height +
-      'px;display:none">' +
-      m.genre +
-      "</div>"
+      `<img class="movie-poster" src="${m.poster}" alt="${m.title} poster" style="height:${height}px"` +
+      ` onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />` +
+      `<div class="movie-poster-placeholder" style="height:${height}px;display:none">${m.genre}</div>`
     );
   }
-  return (
-    '<div class="movie-poster-placeholder" style="height:' +
-    height +
-    'px">' +
-    m.genre +
-    "</div>"
-  );
+  return `<div class="movie-poster-placeholder" style="height:${height}px">${m.genre}</div>`;
 }
 
 function renderMovies(filter = "all") {
-  const grid = document.getElementById("moviesGrid");
+  const grid = $("moviesGrid");
+  if (!grid) return; // guard: only runs on index.html
   const filtered =
     filter === "all" ? MOVIES : MOVIES.filter((m) => m.genre === filter);
   grid.innerHTML = filtered
@@ -347,11 +335,13 @@ function selectMovie(id) {
 }
 
 // =====================
-//  SHOWTIME PAGE
+//  SHOWTIME PAGE (index.html only)
 // =====================
 function renderShowtimePage() {
+  const card = $("movieDetailCard");
+  if (!card) return;
   const m = state.currentMovie;
-  document.getElementById("movieDetailCard").innerHTML = `
+  card.innerHTML = `
     ${posterHTML(m, 380)}
     <div class="detail-info">
       <div class="movie-title">${m.title}</div>
@@ -361,16 +351,14 @@ function renderShowtimePage() {
       <p class="detail-desc">${m.description}</p>
     </div>
   `;
-
   const groups = { morning: [], afternoon: [], evening: [] };
   m.showtimes.forEach((s) => groups[s.period].push(s));
-
   const periodLabels = {
     morning: "Morning",
     afternoon: "Afternoon",
     evening: "Evening",
   };
-  document.getElementById("timeSlots").innerHTML = Object.entries(groups)
+  $("timeSlots").innerHTML = Object.entries(groups)
     .filter(([, slots]) => slots.length)
     .map(
       ([period, slots]) => `
@@ -392,8 +380,7 @@ function renderShowtimePage() {
     `,
     )
     .join("");
-
-  document.getElementById("proceedToSeats").disabled = true;
+  $("proceedToSeats").disabled = true;
 }
 
 function selectShowtime(id) {
@@ -405,31 +392,30 @@ function selectShowtime(id) {
   document
     .querySelector(`.time-slot[data-id="${id}"]`)
     ?.classList.add("selected");
-  document.getElementById("proceedToSeats").disabled = false;
+  $("proceedToSeats").disabled = false;
 }
 
 // =====================
-//  SEAT MAP PAGE
+//  SEAT MAP PAGE (index.html only)
 // =====================
 function renderSeatsPage() {
+  if (!$("seatGrid")) return;
   const m = state.currentMovie;
   const st = state.currentShowtime;
-
   state.selectedSeats = [];
   state.seatMap = generateSeatMap(st.id);
-
   renderSeatGrid();
   updateBookingSummary();
-
-  document.getElementById("summaryMovie").textContent = m.title;
-  document.getElementById("summaryDetails").innerHTML = `
+  $("summaryMovie").textContent = m.title;
+  $("summaryDetails").innerHTML = `
     ${st.time} &bull; ${st.hall}<br/>
     ${new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" })}
   `;
 }
 
 function renderSeatGrid() {
-  const grid = document.getElementById("seatGrid");
+  const grid = $("seatGrid");
+  if (!grid) return;
   grid.innerHTML = state.seatMap
     .map(
       ({ row, seats }) => `
@@ -461,14 +447,10 @@ function toggleSeat(seatId) {
     if (seat) break;
   }
   if (!seat || seat.status === "booked") return;
-
   const idx = state.selectedSeats.indexOf(seatId);
-  if (idx === -1) {
-    state.selectedSeats.push(seatId);
-  } else {
-    state.selectedSeats.splice(idx, 1);
-  }
-
+  idx === -1
+    ? state.selectedSeats.push(seatId)
+    : state.selectedSeats.splice(idx, 1);
   renderSeatGrid();
   localStorage.setItem("currentSeats", JSON.stringify(state.selectedSeats));
   updateBookingSummary();
@@ -483,10 +465,11 @@ function getSeat(id) {
 }
 
 function updateBookingSummary() {
-  const summarySeats = document.getElementById("summarySeats");
-  const totalEl = document.getElementById("totalPrice");
-  const confirmBtn = document.getElementById("confirmBooking");
-  const nameInput = document.getElementById("customerName");
+  const summarySeats = $("summarySeats");
+  const totalEl = $("totalPrice");
+  const confirmBtn = $("confirmBooking");
+  const nameInput = $("customerName");
+  if (!summarySeats) return;
 
   if (state.selectedSeats.length === 0) {
     summarySeats.innerHTML = `<p class="no-seats">No seats selected yet.</p>`;
@@ -516,10 +499,12 @@ function updateBookingSummary() {
 }
 
 // =====================
-//  CONFIRM BOOKING
+//  CONFIRM BOOKING (index.html only)
 // =====================
 function confirmBooking() {
-  const name = document.getElementById("customerName").value.trim();
+  const nameInput = $("customerName");
+  if (!nameInput) return;
+  const name = nameInput.value.trim();
   if (!name || state.selectedSeats.length === 0) return;
 
   const m = state.currentMovie;
@@ -534,8 +519,7 @@ function confirmBooking() {
 
   let total = 0;
   state.selectedSeats.forEach((id) => {
-    const seat = getSeat(id);
-    total += SEAT_PRICES[seat.type];
+    total += SEAT_PRICES[getSeat(id).type];
   });
 
   const booking = {
@@ -558,7 +542,6 @@ function confirmBooking() {
   history.pushState(null, "", "#confirm");
   showPage("page-confirm");
 
-  // Clear session after booking is complete
   localStorage.removeItem("currentPage");
   localStorage.removeItem("currentMovieId");
   localStorage.removeItem("currentShowtimeId");
@@ -566,10 +549,12 @@ function confirmBooking() {
 }
 
 // =====================
-//  CONFIRMATION PAGE
+//  CONFIRMATION PAGE (index.html only)
 // =====================
 function renderConfirmPage(booking) {
-  document.getElementById("confirmDetails").innerHTML = `
+  const el = $("confirmDetails");
+  if (!el) return;
+  el.innerHTML = `
     <strong>Booking ID:</strong> ${booking.bookingId}<br/>
     <strong>Film:</strong> ${booking.movieTitle}<br/>
     <strong>Showtime:</strong> ${booking.showtimeTime} &bull; ${booking.showtimeHall}<br/>
@@ -577,8 +562,7 @@ function renderConfirmPage(booking) {
     <strong>Date:</strong> ${new Date(booking.bookingDate).toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}<br/>
     <strong>Total Paid:</strong> &#163;${booking.totalPrice.toFixed(2)}
   `;
-
-  document.getElementById("confirmTickets").innerHTML = booking.selectedSeats
+  $("confirmTickets").innerHTML = booking.selectedSeats
     .map((id) => {
       const seat = getSeat(id);
       const type = seat
@@ -590,11 +574,12 @@ function renderConfirmPage(booking) {
 }
 
 // =====================
-//  MY TICKETS PAGE
+//  MY TICKETS PAGE (index.html only)
 // =====================
 function renderTicketsPage() {
+  const list = $("ticketsList");
+  if (!list) return;
   const bookings = getBookings();
-  const list = document.getElementById("ticketsList");
 
   if (bookings.length === 0) {
     list.innerHTML = `
@@ -631,7 +616,8 @@ function renderTicketsPage() {
 
 function updateTicketBadge() {
   const count = getBookings().length;
-  const badge = document.getElementById("ticketCount");
+  const badge = $("ticketCount");
+  if (!badge) return;
   if (count > 0) {
     badge.textContent = count;
     badge.classList.remove("hidden");
@@ -641,13 +627,13 @@ function updateTicketBadge() {
 }
 
 // =====================
-//  DARK MODE
+//  DARK MODE (all pages)
 // =====================
 function initDarkMode() {
   const saved = localStorage.getItem("theme");
   if (saved === "light") document.body.classList.add("light");
 }
-document.getElementById("darkToggle").addEventListener("click", () => {
+on("darkToggle", "click", () => {
   document.body.classList.toggle("light");
   localStorage.setItem(
     "theme",
@@ -656,7 +642,7 @@ document.getElementById("darkToggle").addEventListener("click", () => {
 });
 
 // =====================
-//  FILTER TABS
+//  FILTER TABS (index.html only)
 // =====================
 document.querySelectorAll(".filter-tab").forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -670,14 +656,13 @@ document.querySelectorAll(".filter-tab").forEach((btn) => {
 });
 
 // =====================
-//  NAV BUTTONS
+//  NAV BUTTONS (index.html only)
 // =====================
-document.getElementById("backToMovies").addEventListener("click", () => {
+on("backToMovies", "click", () => {
   history.pushState(null, "", window.location.pathname);
   showPage("page-movies");
 });
-document.getElementById("backToShowtime").addEventListener("click", () => {
-  // Re-render showtime page fully so movie detail and slots are visible
+on("backToShowtime", "click", () => {
   if (state.currentMovie) {
     renderShowtimePage();
     setTimeout(() => {
@@ -685,23 +670,23 @@ document.getElementById("backToShowtime").addEventListener("click", () => {
         document
           .querySelector(`.time-slot[data-id="${state.currentShowtime.id}"]`)
           ?.classList.add("selected");
-        document.getElementById("proceedToSeats").disabled = false;
+        $("proceedToSeats").disabled = false;
       }
     }, 50);
   }
   history.pushState(null, "", "#showtime");
   showPage("page-showtime");
 });
-document.getElementById("backFromTickets").addEventListener("click", () => {
+on("backFromTickets", "click", () => {
   history.pushState(null, "", window.location.pathname);
   showPage("page-movies");
 });
-document.getElementById("viewMyTickets").addEventListener("click", () => {
+on("viewMyTickets", "click", () => {
   renderTicketsPage();
   history.pushState(null, "", "#history");
   showPage("page-tickets");
 });
-document.getElementById("backToHome").addEventListener("click", () => {
+on("backToHome", "click", () => {
   state.currentMovie = null;
   state.currentShowtime = null;
   state.selectedSeats = [];
@@ -709,30 +694,38 @@ document.getElementById("backToHome").addEventListener("click", () => {
   history.pushState(null, "", window.location.pathname);
   showPage("page-movies");
 });
-document.getElementById("proceedToSeats").addEventListener("click", () => {
+on("proceedToSeats", "click", () => {
   renderSeatsPage();
   history.pushState(null, "", "#seats");
   showPage("page-seats");
 });
-document
-  .getElementById("confirmBooking")
-  .addEventListener("click", confirmBooking);
-document.getElementById("myTicketsBtn").addEventListener("click", () => {
+on("confirmBooking", "click", confirmBooking);
+on("customerName", "input", updateBookingSummary);
+
+// =====================
+//  TICKETS BUTTON (all pages)
+// =====================
+on("myTicketsBtn", "click", () => {
+  // On films.html: redirect to index.html and open tickets page
+  if (!$("ticketsList")) {
+    window.location.href = "index.html#history";
+    return;
+  }
+  // On index.html: show tickets section directly
   renderTicketsPage();
   history.pushState(null, "", "#history");
   showPage("page-tickets");
 });
-document
-  .getElementById("customerName")
-  .addEventListener("input", updateBookingSummary);
 
 // =====================
-//  SEARCH
+//  SEARCH (all pages)
 // =====================
 function initSearch() {
-  const overlay = document.getElementById("searchOverlay");
-  const input = document.getElementById("searchInput");
-  const cancel = document.getElementById("searchCancel");
+  const overlay = $("searchOverlay");
+  const input = $("searchInput");
+  const cancel = $("searchCancel");
+  if (!overlay || !input || !cancel) return;
+
   function open() {
     overlay.classList.add("open");
     input.focus();
@@ -741,10 +734,9 @@ function initSearch() {
     overlay.classList.remove("open");
     input.value = "";
   }
-  document.getElementById("searchToggle")?.addEventListener("click", open);
-  document
-    .getElementById("searchToggleMobile")
-    ?.addEventListener("click", open);
+
+  $("searchToggle")?.addEventListener("click", open);
+  $("searchToggleMobile")?.addEventListener("click", open);
   cancel.addEventListener("click", close);
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") close();
@@ -752,13 +744,18 @@ function initSearch() {
 
   input.addEventListener("input", () => {
     const q = input.value.toLowerCase();
-    if (!q) return;
     const filtered = MOVIES.filter(
       (m) =>
         m.title.toLowerCase().includes(q) || m.genre.toLowerCase().includes(q),
     );
-    if (document.getElementById("page-movies").classList.contains("active")) {
-      const grid = document.getElementById("moviesGrid");
+
+    // On index.html: filter the movie grid
+    const grid = $("moviesGrid");
+    if (grid) {
+      if (!q) {
+        renderMovies(state.filter);
+        return;
+      }
       grid.innerHTML =
         filtered
           .map(
@@ -779,29 +776,66 @@ function initSearch() {
           )
           .join("") ||
         `<p style="color:var(--text2);padding:20px">No results for "${q}"</p>`;
+      return;
     }
+
+    // On films.html: show a dropdown results box
+    let resultsBox = $("filmsSearchResults");
+    if (!resultsBox) {
+      resultsBox = document.createElement("div");
+      resultsBox.id = "filmsSearchResults";
+      resultsBox.style.cssText = `
+        position:fixed; top:70px; left:50%; transform:translateX(-50%);
+        background:var(--card); border-radius:12px; padding:16px;
+        width:90%; max-width:500px; z-index:999; box-shadow:0 8px 32px rgba(0,0,0,0.4);
+      `;
+      document.body.appendChild(resultsBox);
+    }
+
+    if (!q) {
+      resultsBox.innerHTML = "";
+      return;
+    }
+
+    resultsBox.innerHTML = filtered.length
+      ? filtered
+          .map(
+            (m) => `
+          <div onclick="window.location.href='index.html'" style="padding:10px 0; border-bottom:1px solid var(--border); cursor:pointer;">
+            <strong style="color:var(--text)">${m.title}</strong>
+            <span style="color:var(--text2); font-size:13px; margin-left:8px">${m.genre} &bull; &#9733; ${m.rating}</span>
+          </div>
+        `,
+          )
+          .join("")
+      : `<p style="color:var(--text2)">No results for "${q}"</p>`;
+
+    cancel.addEventListener("click", () => {
+      resultsBox.innerHTML = "";
+    });
   });
 }
 
 // =====================
-//  MOBILE NAV
+//  MOBILE NAV (all pages)
 // =====================
 function initMobileNav() {
-  const hamburger = document.getElementById("hamburger");
-  const navDropdown = document.getElementById("navDropdown");
-  const profileBtn = document.getElementById("profileBtn");
-  const profileDropdown = document.getElementById("profileDropdown");
+  const hamburger = $("hamburger");
+  const navDropdown = $("navDropdown");
+  const profileBtn = $("profileBtn");
+  const profileDropdown = $("profileDropdown");
+  if (!hamburger || !navDropdown) return;
 
   hamburger.addEventListener("click", (e) => {
     e.stopPropagation();
     const open = navDropdown.classList.contains("open");
-    profileDropdown.classList.remove("open");
+    profileDropdown?.classList.remove("open");
     open
       ? navDropdown.classList.remove("open")
       : navDropdown.classList.add("open");
     hamburger.classList.toggle("open", !open);
   });
-  profileBtn.addEventListener("click", (e) => {
+  profileBtn?.addEventListener("click", (e) => {
     e.stopPropagation();
     const open = profileDropdown.classList.contains("open");
     navDropdown.classList.remove("open");
@@ -812,22 +846,31 @@ function initMobileNav() {
   });
   document.addEventListener("click", () => {
     navDropdown.classList.remove("open");
-    profileDropdown.classList.remove("open");
+    profileDropdown?.classList.remove("open");
     hamburger.classList.remove("open");
   });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       navDropdown.classList.remove("open");
-      profileDropdown.classList.remove("open");
+      profileDropdown?.classList.remove("open");
       hamburger.classList.remove("open");
     }
   });
 }
 
 // =====================
-//  RESTORE SESSION
+//  RESTORE SESSION (index.html only)
 // =====================
 function restoreSession() {
+  if (!$("page-movies")) return; // guard: only index.html has this
+
+  // Handle redirect from films.html tickets button
+  if (window.location.hash === "#history") {
+    renderTicketsPage();
+    showPage("page-tickets");
+    return;
+  }
+
   const savedPage = localStorage.getItem("currentPage");
   const savedMovieId = localStorage.getItem("currentMovieId");
   const savedShowtimeId = localStorage.getItem("currentShowtimeId");
@@ -846,7 +889,7 @@ function restoreSession() {
     renderShowtimePage();
     setTimeout(() => {
       const m = state.currentMovie;
-      document.getElementById("movieDetailCard").innerHTML = `
+      $("movieDetailCard").innerHTML = `
         ${posterHTML(m, 380)}
         <div class="detail-info">
           <div class="movie-title">${m.title}</div>
@@ -860,7 +903,7 @@ function restoreSession() {
         document
           .querySelector(`.time-slot[data-id="${state.currentShowtime.id}"]`)
           ?.classList.add("selected");
-        document.getElementById("proceedToSeats").disabled = false;
+        $("proceedToSeats").disabled = false;
       }
     }, 50);
     history.pushState(null, "", "#showtime");
@@ -873,7 +916,7 @@ function restoreSession() {
     renderShowtimePage();
     setTimeout(() => {
       const m = state.currentMovie;
-      document.getElementById("movieDetailCard").innerHTML = `
+      $("movieDetailCard").innerHTML = `
         ${posterHTML(m, 380)}
         <div class="detail-info">
           <div class="movie-title">${m.title}</div>
@@ -887,14 +930,13 @@ function restoreSession() {
         document
           .querySelector(`.time-slot[data-id="${state.currentShowtime.id}"]`)
           ?.classList.add("selected");
-        document.getElementById("proceedToSeats").disabled = false;
+        $("proceedToSeats").disabled = false;
       }
     }, 50);
     state.seatMap = generateSeatMap(state.currentShowtime.id);
     state.selectedSeats = savedSeats;
-    document.getElementById("summaryMovie").textContent =
-      state.currentMovie.title;
-    document.getElementById("summaryDetails").innerHTML = `
+    $("summaryMovie").textContent = state.currentMovie.title;
+    $("summaryDetails").innerHTML = `
       ${state.currentShowtime.time} &bull; ${state.currentShowtime.hall}<br/>
       ${new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" })}
     `;
@@ -913,7 +955,7 @@ function restoreSession() {
 }
 
 // ================================================
-//  LOCATION PICKER
+//  LOCATION PICKER (all pages)
 // ================================================
 const CINEMA_LOCATIONS = [
   { name: "Acton", address: "Royale Leisure Park, Kendal Avenue, London" },
@@ -993,23 +1035,20 @@ function initLocationPicker() {
   toast.id = "locToast";
   document.body.appendChild(toast);
 
-  document.getElementById("locClose").addEventListener("click", locClose);
+  $("locClose").addEventListener("click", locClose);
   backdrop.addEventListener("click", (e) => {
     if (e.target === backdrop) locClose();
   });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && backdrop.classList.contains("open")) locClose();
   });
-
-  document.getElementById("locSearchInput").addEventListener("input", (e) => {
+  $("locSearchInput").addEventListener("input", (e) => {
     locQuery = e.target.value;
     locRenderList();
   });
+  $("locSave").addEventListener("click", locSave);
 
-  document.getElementById("locSave").addEventListener("click", locSave);
-
-  // ✅ FIX: Removed the line that was deleting the tooltip from the DOM.
-  // The tooltip now stays in the HTML and shows on hover via CSS.
+  // Tooltip stays in DOM — only attach click handler here
   document.querySelectorAll(".location-wrapper").forEach((wrapper) => {
     const btn = wrapper.querySelector(".icon-btn");
     btn.addEventListener("click", (e) => {
@@ -1023,21 +1062,21 @@ function initLocationPicker() {
 
 function locOpen() {
   locQuery = "";
-  document.getElementById("locSearchInput").value = "";
+  $("locSearchInput").value = "";
   locRenderPills();
   locRenderList();
-  document.getElementById("locBackdrop").classList.add("open");
+  $("locBackdrop").classList.add("open");
   document.body.style.overflow = "hidden";
-  setTimeout(() => document.getElementById("locSearchInput").focus(), 50);
+  setTimeout(() => $("locSearchInput").focus(), 50);
 }
 
 function locClose() {
-  document.getElementById("locBackdrop").classList.remove("open");
+  $("locBackdrop").classList.remove("open");
   document.body.style.overflow = "";
 }
 
 function locRenderPills() {
-  const container = document.getElementById("locPills");
+  const container = $("locPills");
   container.innerHTML = "";
   locSelected.forEach((name) => {
     const pill = document.createElement("span");
@@ -1057,11 +1096,10 @@ function locRenderList() {
     (l) =>
       l.name.toLowerCase().includes(q) || l.address.toLowerCase().includes(q),
   );
-
-  document.getElementById("locCount").textContent =
+  $("locCount").textContent =
     `Showing ${filtered.length} location${filtered.length !== 1 ? "s" : ""} (select up to 5)`;
 
-  const list = document.getElementById("locList");
+  const list = $("locList");
   list.innerHTML = "";
 
   if (filtered.length === 0) {
@@ -1073,22 +1111,19 @@ function locRenderList() {
     const isActive = locSelected.includes(loc.name);
     const item = document.createElement("div");
     item.className = "loc-item" + (isActive ? " active" : "");
-
     const toggle = document.createElement("button");
     toggle.className = "loc-toggle";
     toggle.innerHTML = isActive ? "&#10003;" : "+";
     toggle.setAttribute("tabindex", "-1");
-
     const info = document.createElement("div");
     info.innerHTML = `<div class="loc-name">${loc.name}</div><div class="loc-addr">${loc.address}</div>`;
-
     item.appendChild(toggle);
     item.appendChild(info);
     item.addEventListener("click", () => locToggle(loc.name));
     list.appendChild(item);
   });
 
-  document.getElementById("locSave").disabled = locSelected.length === 0;
+  $("locSave").disabled = locSelected.length === 0;
 }
 
 function locToggle(name) {
@@ -1101,7 +1136,7 @@ function locToggle(name) {
   }
   locRenderPills();
   locRenderList();
-  document.getElementById("locSave").disabled = locSelected.length === 0;
+  $("locSave").disabled = locSelected.length === 0;
 }
 
 function locSave() {
@@ -1133,7 +1168,7 @@ function locUpdateBadges() {
 }
 
 function locShowToast(msg) {
-  const toast = document.getElementById("locToast");
+  const toast = $("locToast");
   toast.textContent = msg;
   toast.classList.add("show");
   clearTimeout(toast._t);
@@ -1151,19 +1186,19 @@ renderMovies();
 updateTicketBadge();
 restoreSession();
 
-//======================
-// FILMS JS
-//======================
-
 // =====================
-//  INFINITE LOOP SLIDER
+//  INFINITE LOOP SLIDER (films.html only)
 // =====================
 (function () {
   const track = document.querySelector(".slides");
+  if (!track) return; // guard: skip entirely if no slider on this page
+
   const originals = Array.from(document.querySelectorAll(".slide"));
-  const dotsWrap = document.getElementById("sliderDots");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
+  const dotsWrap = $("sliderDots");
+  const prevBtn = $("prevBtn");
+  const nextBtn = $("nextBtn");
+
+  if (!originals.length || !dotsWrap || !prevBtn || !nextBtn) return;
 
   const total = originals.length;
   const DELAY = 3500;
@@ -1185,9 +1220,9 @@ restoreSession();
 
   function setPosition(pos, animate) {
     track.style.transition = animate
-      ? "transform " + SPEED + "ms cubic-bezier(0.4, 0, 0.2, 1)"
+      ? `transform ${SPEED}ms cubic-bezier(0.4, 0, 0.2, 1)`
       : "none";
-    track.style.transform = "translateX(-" + pos * 100 + "%)";
+    track.style.transform = `translateX(-${pos * 100}%)`;
   }
 
   setPosition(position, false);
@@ -1237,14 +1272,12 @@ restoreSession();
 
   track.addEventListener("transitionend", () => {
     isMoving = false;
-
     if (position >= total + 1) {
       position = 1;
       current = 0;
       setPosition(position, false);
       updateDots();
     }
-
     if (position <= 0) {
       position = total;
       current = total - 1;
