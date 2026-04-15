@@ -15,7 +15,6 @@
     <header id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">ODEON</a>
-            <!-- <h1 class="logo">ODEON</h1> -->
 
             <nav class="desktop-nav">
                 <ul>
@@ -27,6 +26,8 @@
                     <li><a class="films" href="#">Family</a></li>
                 </ul>
             </nav>
+
+            <!-- DESKTOP NAV ACTIONS -->
             <div class="nav-actions">
                 <a class="sign-link" href="#">Sign in</a>
                 <a class="sign-link" href="#">Sign up</a>
@@ -69,6 +70,8 @@
                     </svg>
                 </button>
             </div>
+
+            <!-- MOBILE ICONS -->
             <div class="mobile-icons">
                 <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
                 <div class="nav-dropdown" id="navDropdown">
@@ -81,6 +84,7 @@
                         <li><a href="#">Family</a></li>
                     </ul>
                 </div>
+
                 <div class="profile-wrapper">
                     <button class="icon-btn profile-btn" id="profileBtn">
                         <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round"
@@ -95,6 +99,21 @@
                         <a href="#">Sign up</a>
                     </div>
                 </div>
+
+                <!-- Tickets / History (mobile) -->
+                <button class="icon-btn tickets-btn" id="myTicketsBtnMobile" title="My Tickets">
+                    <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                        </path>
+                        <path d="M13 5v2"></path>
+                        <path d="M13 17v2"></path>
+                        <path d="M13 11v2"></path>
+                    </svg>
+                    <span class="ticket-badge hidden" id="ticketCountMobile">0</span>
+                </button>
+
                 <div class="location-wrapper">
                     <button class="icon-btn">
                         <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round"
@@ -108,6 +127,7 @@
                     </button>
                     <div class="location-tooltip">Select your favorite cinemas</div>
                 </div>
+
                 <button class="icon-btn" id="searchToggleMobile">
                     <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -115,8 +135,17 @@
                         <circle cx="11" cy="11" r="8"></circle>
                     </svg>
                 </button>
+
+                <!-- Dark Mode Toggle (mobile) -->
+                <button class="icon-btn" id="darkToggleMobile" title="Toggle dark mode">
+                    <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
             </div>
         </div>
+
         <div class="search-overlay" id="searchOverlay">
             <div class="search-input-wrap">
                 <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -132,10 +161,7 @@
 
     <!-- SLIDER -->
     <div class="slider-wrapper">
-
-        <!-- SLIDES — add as many as you want -->
         <div class="slides">
-
             <div class="slide" style="background-image: url('./posters/supermario-slide.avif');">
                 <div class="slide-overlay"></div>
                 <div class="slide-text">
@@ -167,16 +193,11 @@
                     <button class="btn-tic">Book Nosferatu Now</button>
                 </div>
             </div>
-
         </div>
 
-        <!-- PREV / NEXT ARROWS -->
         <button class="slider-arrow prev" id="prevBtn">&#10094;</button>
         <button class="slider-arrow next" id="nextBtn">&#10095;</button>
-
-        <!-- DOTS -->
         <div class="slider-dots" id="sliderDots"></div>
-
     </div>
 
     <script src="app.js"></script>

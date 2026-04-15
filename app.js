@@ -616,14 +616,16 @@ function renderTicketsPage() {
 
 function updateTicketBadge() {
   const count = getBookings().length;
-  const badge = $("ticketCount");
-  if (!badge) return;
-  if (count > 0) {
-    badge.textContent = count;
-    badge.classList.remove("hidden");
-  } else {
-    badge.classList.add("hidden");
-  }
+  ["ticketCount", "ticketCountMobile"].forEach((id) => {
+    const badge = $(id);
+    if (!badge) return;
+    if (count > 0) {
+      badge.textContent = count;
+      badge.classList.remove("hidden");
+    } else {
+      badge.classList.add("hidden");
+    }
+  });
 }
 
 // =====================
@@ -1174,6 +1176,29 @@ function locShowToast(msg) {
   clearTimeout(toast._t);
   toast._t = setTimeout(() => toast.classList.remove("show"), 2600);
 }
+
+// =====================
+//  MOBILE DARK TOGGLE & TICKETS (all pages)
+// =====================
+on("darkToggleMobile", "click", () => {
+  document.body.classList.toggle("light");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("light") ? "light" : "dark",
+  );
+});
+
+on("myTicketsBtnMobile", "click", () => {
+  // On films.html: redirect to index.html tickets page
+  if (!$("ticketsList")) {
+    window.location.href = "index.html#history";
+    return;
+  }
+  // On index.html: show tickets section directly
+  renderTicketsPage();
+  history.pushState(null, "", "#history");
+  showPage("page-tickets");
+});
 
 // =====================
 //  INIT

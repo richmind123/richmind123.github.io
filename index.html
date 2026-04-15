@@ -16,7 +16,6 @@
     <header id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">ODEON</a>
-            <!-- <h1 class="logo">ODEON</h1> -->
 
             <nav class="desktop-nav">
                 <ul>
@@ -28,6 +27,8 @@
                     <li><a class="films" href="#">Family</a></li>
                 </ul>
             </nav>
+
+            <!-- DESKTOP NAV ACTIONS -->
             <div class="nav-actions">
                 <a class="sign-link" href="#">Sign in</a>
                 <a class="sign-link" href="#">Sign up</a>
@@ -70,6 +71,8 @@
                     </svg>
                 </button>
             </div>
+
+            <!-- MOBILE ICONS -->
             <div class="mobile-icons">
                 <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
                 <div class="nav-dropdown" id="navDropdown">
@@ -82,6 +85,7 @@
                         <li><a href="#">Family</a></li>
                     </ul>
                 </div>
+
                 <div class="profile-wrapper">
                     <button class="icon-btn profile-btn" id="profileBtn">
                         <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round"
@@ -96,6 +100,21 @@
                         <a href="#">Sign up</a>
                     </div>
                 </div>
+
+                <!-- Tickets / History (mobile) -->
+                <button class="icon-btn tickets-btn" id="myTicketsBtnMobile" title="My Tickets">
+                    <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                        </path>
+                        <path d="M13 5v2"></path>
+                        <path d="M13 17v2"></path>
+                        <path d="M13 11v2"></path>
+                    </svg>
+                    <span class="ticket-badge hidden" id="ticketCountMobile">0</span>
+                </button>
+
                 <div class="location-wrapper">
                     <button class="icon-btn">
                         <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round"
@@ -109,6 +128,7 @@
                     </button>
                     <div class="location-tooltip">Select your favorite cinemas</div>
                 </div>
+
                 <button class="icon-btn" id="searchToggleMobile">
                     <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -116,8 +136,17 @@
                         <circle cx="11" cy="11" r="8"></circle>
                     </svg>
                 </button>
+
+                <!-- Dark Mode Toggle (mobile) -->
+                <button class="icon-btn" id="darkToggleMobile" title="Toggle dark mode">
+                    <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
             </div>
         </div>
+
         <div class="search-overlay" id="searchOverlay">
             <div class="search-input-wrap">
                 <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -130,6 +159,7 @@
             <button class="search-cancel-btn" id="searchCancel">Cancel</button>
         </div>
     </header>
+
     <main>
         <section class="page active" id="page-movies">
             <div class="hero-banner"
@@ -139,7 +169,6 @@
                     <h2 class="hero-title">Book Your<br />Cinema Experience</h2>
                     <p class="hero-sub">Select a film, pick your showtime, choose your seats.</p>
                 </div>
-                <!-- <div class="hero-glow"></div> -->
             </div>
             <div class="section-header">
                 <h3>Currently Showing</h3>
@@ -154,6 +183,7 @@
             </div>
             <div class="movies-grid" id="moviesGrid"></div>
         </section>
+
         <section class="page" id="page-showtime">
             <button class="back-btn" id="backToMovies">← Back to Films</button>
             <div class="showtime-layout">
@@ -165,6 +195,7 @@
                 </div>
             </div>
         </section>
+
         <section class="page" id="page-seats">
             <button class="back-btn" id="backToShowtime">← Back to Showtimes</button>
             <div class="seats-layout">
@@ -198,6 +229,7 @@
                 </div>
             </div>
         </section>
+
         <section class="page" id="page-confirm">
             <div class="confirm-card" id="confirmCard">
                 <div class="confirm-icon">✓</div>
@@ -211,6 +243,7 @@
                 </div>
             </div>
         </section>
+
         <section class="page" id="page-tickets">
             <button class="back-btn" id="backFromTickets">← Back to Films</button>
             <div class="section-header">
@@ -223,14 +256,10 @@
     <section class="limitless">
         <div class="limitless-title">See as many movies as you<br> like</div>
         <div class="limitless-sub">myLIMITLESS is your passport to all our<br> movies. From heart-tugging rom
-            coms,<br> blood curdling
-            horrors
-            and action-packed<br> sci-fi, it’s your ticket to infinite cinema and<br> big-screen thrills.</div>
-
+            coms,<br> blood curdling horrors and action-packed<br> sci-fi, it's your ticket to infinite cinema and<br>
+            big-screen thrills.</div>
         <div class="limitless-subsub">On top of that, enjoy great savings on<br> food & drink and invites to
-            member<br> exclusive
-            screenings.</div>
-
+            member<br> exclusive screenings.</div>
         <a href="#" class="limit-btn">Sign up to myLIMITLESS <svg xmlns="http://www.w3.org/2000/svg" width="15"
                 height="15" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -246,10 +275,8 @@
                     <img src="./posters/web_800x400-2-1.jpg">
                     <p class="book-space">Book tickets for Reminders<br> of Him for your chance to<br> win a trip to
                         Canada!*</p>
-                    <h3 class="trip">To celebrate the release of<br> Reminders Of Him we are offering<br> you the chance
-                        to win a
-                        trip to<br>
-                        Canada* when you book to see it<br> before 15 March!</h3>
+                    <h3 class="trip">To celebrate the release of<br> Reminders Of Him we are offering<br> you the
+                        chance to win a trip to<br> Canada* when you book to see it<br> before 15 March!</h3>
                     <h4 class="term">*Terms & Conditions apply</h4>
                     <h3 class="expir">Expires: 16/03/2026</h3>
                     <a href="#" class="find">Find out more</a>
@@ -261,14 +288,10 @@
                     <p class="book-space">ODEON Gift card</p>
                     <h3 class="trip">One card, endless possibilities</h3>
                     <h4 class="term">Skip the chocolates and flowers<br> this Mother's Day. Instead, treat the<br>
-                        greatest Mum in
-                        the galaxy with an<br> ODEON Gift card!</h4>
+                        greatest Mum in the galaxy with an<br> ODEON Gift card!</h4>
                     <h3 class="expir">ODEON prides itself on being the<br> destination of choice for film lovers,<br>
-                        with
-                        cutting-edge
-                        technology and<br> comfort. Just about everyone loves<br> the big screen, so you can’t go<br>
-                        wrong with an
-                        ODEON Gift card.</h3>
+                        with cutting-edge technology and<br> comfort. Just about everyone loves<br> the big screen, so
+                        you can't go<br> wrong with an ODEON Gift card.</h3>
                     <a href="#" class="find">Find out more</a>
                 </div>
             </div>
@@ -277,8 +300,7 @@
                     <img src="./posters/amazon-banner-uk-a.jpg">
                     <p class="book-space">Get 2 tickets for just £10 with Amazon Prime*</p>
                     <h3 class="trip">Immerse yourself in the big screen experience and get 2 classic or classic saver
-                        tickets for
-                        £10, or 2 recliner or recliner saver tickets for £15 at ODEON Luxe.</h3>
+                        tickets for £10, or 2 recliner or recliner saver tickets for £15 at ODEON Luxe.</h3>
                     <h4 class="term">This offer is available Monday-Thursday and can be used once per month.</h4>
                     <h3 class="expir">*Terms & Conditions apply</h3>
                     <a href="#" class="find">Find out more</a>
@@ -286,9 +308,11 @@
             </div>
         </div>
     </section>
+
     <div class="container-offer">
         <a href="#" class="see-offer">See more of our Offers & Competitions</a>
     </div>
+
     <footer>
         <div class="footer-container">
             <ul>
@@ -356,7 +380,6 @@
             </div>
         </div>
     </footer>
-
 
     <script src="app.js"></script>
 </body>
