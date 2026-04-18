@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
     <header id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">ODEON</a>
@@ -71,78 +70,81 @@
                 </button>
             </div>
 
-            <!-- MOBILE ICONS -->
-            <div class="mobile-icons">
-                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-                <div class="nav-dropdown" id="navDropdown">
-                    <ul>
-                        <li><a href="films.html">Films</a></li>
-                        <li><a href="#">Cinemas</a></li>
-                        <li><a href="#">Experience</a></li>
-                        <li><a href="#">Membership</a></li>
-                        <li><a href="#">Offers &amp; Gifts</a></li>
-                        <li><a href="#">Family</a></li>
-                    </ul>
-                </div>
+            <!-- MOBILE NAV: 🔎 📍 | ODEON | 🌙 ☰ -->
+            <div class="mobile-nav-bar">
 
-                <div class="profile-wrapper">
-                    <button class="icon-btn profile-btn" id="profileBtn">
+                <!-- LEFT: Search + Location -->
+                <div class="mobile-left">
+                    <button class="icon-btn" id="searchToggleMobile">
                         <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"
                             xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="8" r="4"></circle>
-                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
+                            <path d="m21 21-4.34-4.34"></path>
+                            <circle cx="11" cy="11" r="8"></circle>
                         </svg>
                     </button>
-                    <div class="profile-dropdown" id="profileDropdown">
-                        <a href="#">Sign in</a>
-                        <a href="#">Sign up</a>
+                    <div class="location-wrapper">
+                        <button class="icon-btn">
+                            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                </path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </button>
+                        <div class="location-tooltip">Select your favorite cinemas</div>
                     </div>
                 </div>
 
-                <!-- Tickets / History (mobile) -->
-                <button class="icon-btn tickets-btn" id="myTicketsBtnMobile" title="My Tickets">
-                    <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
-                        </path>
-                        <path d="M13 5v2"></path>
-                        <path d="M13 17v2"></path>
-                        <path d="M13 11v2"></path>
-                    </svg>
-                    <span class="ticket-badge hidden" id="ticketCountMobile">0</span>
-                </button>
+                <!-- CENTER: ODEON Logo -->
+                <a href="index.html" class="mobile-logo">ODEON</a>
 
-                <div class="location-wrapper">
-                    <button class="icon-btn">
+                <!-- RIGHT: Dark Mode + Hamburger -->
+                <div class="mobile-right">
+                    <button class="icon-btn" id="darkToggleMobile" title="Toggle dark mode">
                         <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"
                             xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
-                            </path>
-                            <circle cx="12" cy="10" r="3"></circle>
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
                     </button>
-                    <div class="location-tooltip">Select your favorite cinemas</div>
+                    <div class="hamburger-wrapper">
+                        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+                        <div class="nav-dropdown" id="navDropdown">
+                            <ul>
+                                <li class="nav-auth"><a href="#">Sign in</a></li>
+                                <li class="nav-auth"><a href="#">Sign up</a></li>
+                                <li class="nav-divider"></li>
+                                <li><a href="films.html">Films</a></li>
+                                <li><a href="#">Cinemas</a></li>
+                                <li><a href="#">Experience</a></li>
+                                <li><a href="#">Membership</a></li>
+                                <li><a href="#">Offers &amp; Gifts</a></li>
+                                <li><a href="#">Family</a></li>
+                                <li class="nav-divider"></li>
+                                <li>
+                                    <a href="#" id="myTicketsBtnMobile" class="nav-tickets-link">
+                                        <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                                            </path>
+                                            <path d="M13 5v2"></path>
+                                            <path d="M13 17v2"></path>
+                                            <path d="M13 11v2"></path>
+                                        </svg>
+                                        My Tickets
+                                        <span class="ticket-badge hidden" id="ticketCountMobile">0</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
-                <button class="icon-btn" id="searchToggleMobile">
-                    <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
-                        <path d="m21 21-4.34-4.34"></path>
-                        <circle cx="11" cy="11" r="8"></circle>
-                    </svg>
-                </button>
-
-                <!-- Dark Mode Toggle (mobile) -->
-                <button class="icon-btn" id="darkToggleMobile" title="Toggle dark mode">
-                    <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
             </div>
         </div>
 
@@ -169,7 +171,6 @@
                     <button class="btn-tic">Experience The Super Mario Galaxy Movie</button>
                 </div>
             </div>
-
             <div class="slide" style="background-image: url('./posters/dark\ knights\ slide.webp');">
                 <div class="slide-overlay"></div>
                 <div class="slide-text">
@@ -177,7 +178,6 @@
                     <button class="btn-tic">Book The Batman Now</button>
                 </div>
             </div>
-
             <div class="slide" style="background-image: url('./posters/dune-part-3\ slide.jpg');">
                 <div class="slide-overlay"></div>
                 <div class="slide-text">
@@ -185,7 +185,6 @@
                     <button class="btn-tic">Book Dune: Part Three</button>
                 </div>
             </div>
-
             <div class="slide" style="background-image: url('./posters/Nosferatu.slide-jpg.jpg');">
                 <div class="slide-overlay"></div>
                 <div class="slide-text">
@@ -194,7 +193,6 @@
                 </div>
             </div>
         </div>
-
         <button class="slider-arrow prev" id="prevBtn">&#10094;</button>
         <button class="slider-arrow next" id="nextBtn">&#10095;</button>
         <div class="slider-dots" id="sliderDots"></div>

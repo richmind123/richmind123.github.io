@@ -824,37 +824,27 @@ function initSearch() {
 function initMobileNav() {
   const hamburger = $("hamburger");
   const navDropdown = $("navDropdown");
-  const profileBtn = $("profileBtn");
-  const profileDropdown = $("profileDropdown");
   if (!hamburger || !navDropdown) return;
 
   hamburger.addEventListener("click", (e) => {
     e.stopPropagation();
     const open = navDropdown.classList.contains("open");
-    profileDropdown?.classList.remove("open");
     open
       ? navDropdown.classList.remove("open")
       : navDropdown.classList.add("open");
     hamburger.classList.toggle("open", !open);
   });
-  profileBtn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const open = profileDropdown.classList.contains("open");
-    navDropdown.classList.remove("open");
-    hamburger.classList.remove("open");
-    open
-      ? profileDropdown.classList.remove("open")
-      : profileDropdown.classList.add("open");
+
+  document.addEventListener("click", (e) => {
+    if (!hamburger.contains(e.target) && !navDropdown.contains(e.target)) {
+      navDropdown.classList.remove("open");
+      hamburger.classList.remove("open");
+    }
   });
-  document.addEventListener("click", () => {
-    navDropdown.classList.remove("open");
-    profileDropdown?.classList.remove("open");
-    hamburger.classList.remove("open");
-  });
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       navDropdown.classList.remove("open");
-      profileDropdown?.classList.remove("open");
       hamburger.classList.remove("open");
     }
   });
